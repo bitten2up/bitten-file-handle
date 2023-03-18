@@ -55,7 +55,14 @@ int loadGame()
 			printf("Version of game saved: %i\n", buffer[10]);
 			for(int i = 7; 0 <= i; i --) {
         		printf("%d\n", (buffer[11] >> i) & 0x01);
+				if (i==7) {
+					if ((buffer[11] >> i) & 0x01) {
+						printf("music enabled\n");
+					}
+				}
 			}
+			printf("xpos: %i\n", buffer[12]);
+			printf("ypos: %i\n", buffer[13]);
 			// free memory
 			fclose(f1);
 			free(buffer);
