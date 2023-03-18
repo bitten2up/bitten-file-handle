@@ -1,13 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <stdbool.h>
 #include "defaultSave.h"	// default savefile
 #include "bit_file.h"
 #define VERSION 0x01
-
+bool file_exists(const char *filename)
+{
+    FILE *fp = fopen(filename, "r");
+    bool is_exist = false;
+    if (fp != NULL)
+    {
+        is_exist = true;
+        fclose(fp); // close the file
+    }
+    return is_exist;
+}
 void writeSave();
 int readSave()
 {
+    if (file_exists("bitten.sav")) {
 	FILE *f1 = fopen("bitten.sav", "rb"); // open in binary mode
 	char* buffer;
 	long saveSize;
@@ -48,6 +60,11 @@ int readSave()
 	else {
 		fclose(f1);
 		writeSave();
+    }
+    }
+    else {
+        writeSave();
+    }
 	return 0;
 }
 void writeSave()
