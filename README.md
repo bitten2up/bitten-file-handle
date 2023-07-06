@@ -1,2 +1,2 @@
 # bitten-file-handle
-## an expiramental file handle for bitten-engine
+## an expiramental savefile handler for bitten-engine
